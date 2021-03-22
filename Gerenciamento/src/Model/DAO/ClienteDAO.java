@@ -1,5 +1,5 @@
-package Model.DAO;
+package model.DAO;
 
 public class ClienteDAO {
-	//Inicializando repositório
+	//Inicializando repositï¿½rio
 }

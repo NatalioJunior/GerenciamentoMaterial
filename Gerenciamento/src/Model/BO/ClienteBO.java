@@ -1,5 +1,5 @@
-package Model.BO;
+package model.BO;
 
 public class ClienteBO {
-	//Inicializando repositório
+	//Inicializando repositï¿½rio
 }
