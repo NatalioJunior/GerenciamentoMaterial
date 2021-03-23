@@ -1,8 +1,7 @@
 package model.VO;
-
 import java.io.IOException;
 
-class ProdutoVO {
+public class ProdutoVO {
 
 	private int id;
 	private String nome;

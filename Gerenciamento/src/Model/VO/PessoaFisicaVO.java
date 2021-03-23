@@ -1,6 +1,6 @@
 package model.VO;
 
-class PessoaFisicaVO extends ClienteVO {
+public class PessoaFisicaVO extends ClienteVO {
 
 	
 }

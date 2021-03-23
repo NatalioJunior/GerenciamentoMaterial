@@ -3,11 +3,12 @@ package model.VO;
 import java.io.IOException;
 import java.util.Calendar;
 
-class CompraVO {
+public class CompraVO {
 
 	private ClienteVO cliente;
 	private ProdutoVO produto;
 	private Calendar dataCompra;
+	private int quantidade;
 	private double valorTotal;
 	
 	//getters e setters
@@ -51,6 +52,21 @@ class CompraVO {
 			throw new IOException("data da compra inválido!");
 		}
 	}
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) throws IOException {
+		if(quantidade < 0)
+		{
+			throw new IOException("Quantidade de itens da compra inválida!");
+		}
+		else
+		{
+			this.quantidade = quantidade;
+		}
+	}
+	
 	public double getValorTotal() {
 		return valorTotal;
 	}
