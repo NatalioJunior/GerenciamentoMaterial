@@ -1,7 +1,8 @@
 package model.BO;
 import java.io.IOException;
-import model.VO.ProdutoVO;
 import java.util.List;
+
+import model.VO.ProdutoVO;
 
 public interface ProdutoInterBO {
 	
