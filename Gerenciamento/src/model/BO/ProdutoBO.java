@@ -5,10 +5,10 @@ import java.util.List;
 
 import model.VO.ProdutoVO;
 
-public class ProdutoBO implements ProdutoInterBO {
+public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 
 	@Override
-	public void cadastrarProduto(ProdutoVO produto) throws IOException {
+	public void cadastrar(ProdutoVO produto) throws IOException {
 		
 		if(produto.getId() < 0 && produto.getNome() == null && produto.getDescricao() == null
 				&& produto.getQuantidade() < 0 && produto.getPreco() < 0)
@@ -23,7 +23,7 @@ public class ProdutoBO implements ProdutoInterBO {
 	}
 
 	@Override
-	public void editarProduto(ProdutoVO produto) throws IOException {
+	public void editar(ProdutoVO produto) throws IOException {
 		
 		if(produto.getId() < 0 && produto.getNome() == null && produto.getDescricao() == null
 				&& produto.getQuantidade() < 0 && produto.getPreco() < 0)
@@ -38,7 +38,7 @@ public class ProdutoBO implements ProdutoInterBO {
 	}
 
 	@Override
-	public void deletarProduto(ProdutoVO produto) throws IOException {
+	public void deletar(ProdutoVO produto) throws IOException {
 		
 		if(produto.getId() < 0 && produto.getNome() == null && produto.getDescricao() == null
 				&& produto.getQuantidade() < 0 && produto.getPreco() < 0)
@@ -53,7 +53,7 @@ public class ProdutoBO implements ProdutoInterBO {
 	}
 
 	@Override
-	public List<ProdutoVO> pesquisarProduto(ProdutoVO produto) throws IOException {
+	public List<ProdutoVO> pesquisar(ProdutoVO produto) throws IOException {
 		
 		if(produto.getId() < 0 && produto.getNome() == null && produto.getDescricao() == null
 				&& produto.getQuantidade() < 0 && produto.getPreco() < 0)
@@ -68,7 +68,7 @@ public class ProdutoBO implements ProdutoInterBO {
 	}
 
 	@Override
-	public List<ProdutoVO> listarProdutos() {
+	public List<ProdutoVO> listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}

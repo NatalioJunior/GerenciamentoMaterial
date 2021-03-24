@@ -5,10 +5,10 @@ import java.util.List;
 
 import model.VO.CompraVO;
 
-public class CompraBO implements CompraInterBO{
+public class CompraBO implements BaseInterBO<CompraVO>{
 
 	@Override
-	public void cadastrarCompra(CompraVO compra) throws IOException {
+	public void cadastrar(CompraVO compra) throws IOException {
 		
 		if(compra.getCliente() == null && compra.getProduto() == null && compra.getDataCompra()
 					== null && compra.getQuantidade() < 0 && compra.getValorTotal() < 0)
@@ -23,7 +23,7 @@ public class CompraBO implements CompraInterBO{
 	}
 
 	@Override
-	public void editarCompra(CompraVO compra) throws IOException {
+	public void editar(CompraVO compra) throws IOException {
 		
 		if(compra.getCliente() == null && compra.getProduto() == null && compra.getDataCompra()
 				== null && compra.getQuantidade() < 0 && compra.getValorTotal() < 0)
@@ -38,7 +38,7 @@ public class CompraBO implements CompraInterBO{
 	}
 
 	@Override
-	public void deletarCompra(CompraVO compra) throws IOException {
+	public void deletar(CompraVO compra) throws IOException {
 		
 		if(compra.getCliente() == null && compra.getProduto() == null && compra.getDataCompra()
 				== null && compra.getQuantidade() < 0 && compra.getValorTotal() < 0)
@@ -53,7 +53,7 @@ public class CompraBO implements CompraInterBO{
 	}
 
 	@Override
-	public List<CompraVO> pesquisarCompra(CompraVO compra) throws IOException {
+	public List<CompraVO> pesquisar(CompraVO compra) throws IOException {
 		
 		if(compra.getCliente() == null && compra.getProduto() == null && compra.getDataCompra()
 				== null && compra.getQuantidade() < 0 && compra.getValorTotal() < 0)
@@ -69,7 +69,7 @@ public class CompraBO implements CompraInterBO{
 	}
 
 	@Override
-	public List<CompraVO> listarCompras() {
+	public List<CompraVO> listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}

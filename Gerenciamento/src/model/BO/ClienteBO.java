@@ -5,10 +5,10 @@ import java.util.List;
 
 import model.VO.ClienteVO;
 
-public class ClienteBO implements ClienteInterBO<ClienteVO> {
+public class ClienteBO implements BaseInterBO<ClienteVO> {
 
 	@Override
-	public void cadastrarCliente(ClienteVO vo) throws IOException {
+	public void cadastrar(ClienteVO vo) throws IOException {
 		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
 		{
 			
@@ -20,20 +20,7 @@ public class ClienteBO implements ClienteInterBO<ClienteVO> {
 	}
 
 	@Override
-	public void editarCliente(ClienteVO vo) throws IOException {
-		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
-		{
-			
-		}
-		else
-		{
-			throw new IOException("Dados inválidos inseridos em cliente BO");
-		}
-		
-	}
-
-	@Override
-	public void deletarCliente(ClienteVO vo) throws IOException{
+	public void editar(ClienteVO vo) throws IOException {
 		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
 		{
 			
@@ -46,7 +33,20 @@ public class ClienteBO implements ClienteInterBO<ClienteVO> {
 	}
 
 	@Override
-	public List<ClienteVO> pesquisarCliente(ClienteVO vo) throws IOException{
+	public void deletar(ClienteVO vo) throws IOException{
+		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
+		{
+			
+		}
+		else
+		{
+			throw new IOException("Dados inválidos inseridos em cliente BO");
+		}
+		
+	}
+
+	@Override
+	public List<ClienteVO> pesquisar(ClienteVO vo) throws IOException{
 		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
 		{
 			
@@ -59,7 +59,7 @@ public class ClienteBO implements ClienteInterBO<ClienteVO> {
 	}
 
 	@Override
-	public List<ClienteVO> listarClientes() {
+	public List<ClienteVO> listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
