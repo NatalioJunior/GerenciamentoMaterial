@@ -9,6 +9,6 @@ public interface BaseInterBO<VO> {
 	public void editar(VO vo) throws IOException;
 	public void deletar(VO vo) throws IOException;
 	public List<VO> pesquisar(VO vo) throws IOException;
-	public List<VO> listar();
+	public List<VO> listar() throws IOException;
 
 }
