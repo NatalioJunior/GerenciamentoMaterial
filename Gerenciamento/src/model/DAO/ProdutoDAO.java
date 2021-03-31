@@ -6,17 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import model.VO.ClienteVO;
+import model.VO.ProdutoVO;
 
-public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInterDAO<VO>{
+public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInterDAO<VO> {
 
+	@Override
 	public void createDAO(VO vo) throws IOException, SQLException {
-		String sql = "insert into clientes values (?,?)";
+		String sql = "insert into produtos values (?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getCadastroPessoa());
+			ptst.setInt(1, vo.getId());
 			ptst.setString(2,vo.getNome());
+			ptst.setNString(3, vo.getDescricao());
+			ptst.setInt(4, vo.getQuantidade());
+			ptst.setDouble(5, vo.getPreco());
 			ptst.execute();
 		} catch (SQLException e){
 			e.printStackTrace();
@@ -24,13 +28,14 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 		
 	}
 
+	@Override
 	public void removeDAO(VO vo) throws IOException, SQLException {
-		String sql = "delete from clientes where cpf = ?";
+		String sql = "delete from produtos where id = ?";
 		PreparedStatement ptst;
 		
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getCadastroPessoa());
+			ptst.setInt(1, vo.getId());
 			ptst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -38,14 +43,18 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 		
 	}
 
+	@Override
 	public void updateDAO(VO vo) throws IOException, SQLException {
-		String sql = "update clientes set nome = ? where cpf = ?";
+		String sql = "update produtos set nome = ?, descricao = ?, quantidade = ?, preco = ? where id = ?";
 		PreparedStatement ptst;
 		
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getCadastroPessoa());
+			ptst.setNString(2, vo.getDescricao());
+			ptst.setInt(3, vo.getQuantidade());
+			ptst.setDouble(4, vo.getPreco());
+			ptst.setInt(5, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,8 +62,9 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 		
 	}
 
+	@Override
 	public ResultSet listDAO() throws IOException, SQLException {
-		String sql = "select * from clientes";
+		String sql = "select * from produtos";
 		Statement st;
 		ResultSet rs = null;
 		
@@ -66,22 +76,22 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 		}
 		return rs;
 	}
-	
+
+	@Override
 	public ResultSet searchDAO(VO vo) throws IOException, SQLException {
-		String sql = "select * from clientes where cpf = ?, nome = ?";
+		String sql = "select * from produtos where id = ?, nome = ?";
 		ResultSet rs = null;
 		PreparedStatement ptst;
 		
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getCadastroPessoa());
+			ptst.setInt(1, vo.getId());
 			ptst.setString(2, vo.getNome());
 			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return rs;
-		
 	}
 
 }

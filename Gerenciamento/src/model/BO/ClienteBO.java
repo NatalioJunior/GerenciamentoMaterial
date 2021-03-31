@@ -15,11 +15,11 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 	private static BaseInterDAO<ClienteVO> dao = new ClienteDAO<>();
 
 	@Override
-	public void cadastrar(ClienteVO vo) throws IOException {
-		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
+	public void cadastrar(ClienteVO cliente) throws IOException {
+		if(cliente.getCadastroPessoa() != null && cliente.getNome() != null)
 		{
 			try {
-				dao.createDAO(vo);
+				dao.createDAO(cliente);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -31,28 +31,11 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 	}
 
 	@Override
-	public void editar(ClienteVO vo) throws IOException {
-		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
+	public void editar(ClienteVO cliente) throws IOException {
+		if(cliente.getCadastroPessoa() != null && cliente.getNome() != null)
 		{
 			try {
-				dao.updateDAO(vo);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		else
-		{
-			throw new IOException("Dados inválidos inseridos em cliente BO");
-		}
-		
-	}
-
-	@Override
-	public void deletar(ClienteVO vo) throws IOException{
-		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
-		{
-			try {
-				dao.removeDAO(vo);
+				dao.updateDAO(cliente);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -65,18 +48,49 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 	}
 
 	@Override
-	public List<ClienteVO> pesquisar(ClienteVO vo) throws IOException{
-		if(vo.getCadastroPessoa() != null && vo.getNome() != null)
+	public void deletar(ClienteVO cliente) throws IOException{
+		if(cliente.getCadastroPessoa() != null && cliente.getNome() != null)
 		{
+			try {
+				dao.removeDAO(cliente);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			throw new IOException("Dados inválidos inseridos em cliente BO");
+		}
+		
+	}
+
+	@SuppressWarnings("null")
+	@Override
+	public List<ClienteVO> pesquisar(ClienteVO cliente) throws IOException{
+		if(cliente.getCadastroPessoa() != null && cliente.getNome() != null)
+		{
+			ClienteVO vo = null;
+			List<ClienteVO> listClientes = new ArrayList<>();
 			
+			try {
+				ResultSet rs = dao.searchDAO(cliente);
+				while (rs.next()) {
+					vo.setCadastroPessoa(rs.getString("cpf"));
+					vo.setNome(rs.getString("nome"));
+					listClientes.add(vo);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+			return listClientes;
 		}
 		else
 		{
 			throw new IOException("Dados inválidos inseridos em cliente BO");
 		}
-		return null;
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	public List<ClienteVO> listar() throws IOException {
 		ClienteVO cliente = null;
@@ -91,8 +105,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 		return listClientes;
 	}
 	
