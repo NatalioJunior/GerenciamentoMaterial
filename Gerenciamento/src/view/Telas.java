@@ -21,6 +21,7 @@ public class Telas extends Application {
 
 	public void start(Stage pS) throws Exception {
 		setPrimaryStage(pS);
+		pS.setResizable(false);
 		telaLogin();
 		
 	}
