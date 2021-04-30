@@ -10,7 +10,6 @@ import model.VO.ProdutoVO;
 
 public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInterDAO<VO> {
 
-	@Override
 	public void createDAO(VO vo) throws IOException, SQLException {
 		String sql = "insert into produtos values (?,?,?,?,?)";
 		PreparedStatement ptst;
@@ -18,7 +17,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInt
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setInt(1, vo.getId());
 			ptst.setString(2,vo.getNome());
-			ptst.setNString(3, vo.getDescricao());
+			ptst.setString(3, vo.getDescricao());
 			ptst.setInt(4, vo.getQuantidade());
 			ptst.setDouble(5, vo.getPreco());
 			ptst.execute();
@@ -51,7 +50,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInt
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, vo.getNome());
-			ptst.setNString(2, vo.getDescricao());
+			ptst.setString(2, vo.getDescricao());
 			ptst.setInt(3, vo.getQuantidade());
 			ptst.setDouble(4, vo.getPreco());
 			ptst.setInt(5, vo.getId());

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@TELA%20MENU.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="492.0" layoutY="246.0" mnemonicParsing="false" onAction="#estoqueProdutos" prefHeight="43.0" prefWidth="296.0" style="-fx-background-color: transparent;" />
+   </children>
+</Pane>

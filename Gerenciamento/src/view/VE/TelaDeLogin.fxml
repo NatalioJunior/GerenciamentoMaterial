@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -13,14 +14,14 @@
             <Image url="@TELA%20INICIAL.png" />
          </image>
       </ImageView>
-      <TextField fx:id="idUsuario" layoutX="577.0" layoutY="345.0" prefHeight="36.0" prefWidth="268.0" style="-fx-background-color: transparent;">
+      <TextField fx:id="idUsuario" layoutX="577.0" layoutY="348.0" prefHeight="36.0" prefWidth="268.0" promptText="CPF" style="-fx-background-color: transparent;">
          <font>
-            <Font name="Cambria Bold" size="30.0" />
+            <Font name="Cambria Bold" size="24.0" />
          </font></TextField>
-      <PasswordField fx:id="idSenha" layoutX="579.0" layoutY="413.0" prefHeight="68.0" prefWidth="268.0" style="-fx-background-color: transparent;">
+      <PasswordField fx:id="idSenha" layoutX="579.0" layoutY="413.0" prefHeight="68.0" prefWidth="268.0" promptText="NOME" style="-fx-background-color: transparent;">
          <font>
-            <Font name="Cambria Bold" size="35.0" />
+            <Font name="Cambria Bold" size="25.0" />
          </font></PasswordField>
-      <Button fx:id="idEntrar" layoutX="540.0" layoutY="533.0" mnemonicParsing="false" onAction="#entrar" prefHeight="47.0" prefWidth="199.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="540.0" layoutY="533.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="47.0" prefWidth="199.0" style="-fx-background-color: transparent;" />
    </children>
 </Pane>

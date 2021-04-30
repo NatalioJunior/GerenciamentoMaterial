@@ -34,7 +34,7 @@ public class ProdutoVO {
 		}
 		else
 		{
-			throw new IOException("nome do produto inválido");
+			throw new IOException("Nome do produto inválido");
 		}
 	}
 	public String getDescricao() {
@@ -47,7 +47,7 @@ public class ProdutoVO {
 		}
 		else
 		{
-			throw new IOException("Id do produto inválido");
+			throw new IOException("Descrição do produto inválido");
 		}
 	}
 	public int getQuantidade() {
@@ -56,7 +56,7 @@ public class ProdutoVO {
 	public void setQuantidade(int quantidade) throws IOException {
 		if(quantidade < 0)
 		{
-			throw new IOException("Id do produto inválido");
+			throw new IOException("Quantidade do produto inválido");
 		}
 		else
 		{
@@ -69,7 +69,7 @@ public class ProdutoVO {
 	public void setPreco(double preco) throws IOException {
 		if(preco < 0)
 		{
-			throw new IOException("Id do produto inválido");
+			throw new IOException("Preço do produto inválido");
 		}
 		else
 		{
