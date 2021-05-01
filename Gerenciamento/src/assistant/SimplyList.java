@@ -139,7 +139,7 @@ public class SimplyList <T> implements InterList<T> {
 		T removido = null;
 		
 		if (head == null) {
-			throw new GeneralException("ERRO: Lista vazia!");
+			return null;
 		}
 		else {
 			removido = ptr.object;

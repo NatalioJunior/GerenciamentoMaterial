@@ -111,7 +111,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 			while (rs.next()) {
 				produto.setId(rs.getInt("id"));
 				produto.setNome(rs.getString("nome"));
-				produto.setDescricao(rs.getNString("descricao"));
+				produto.setDescricao(rs.getString("descricao"));
 				produto.setQuantidade(rs.getInt("quantidade"));
 				produto.setPreco(rs.getDouble("preco"));
 				listProdutos.addLast(produto);

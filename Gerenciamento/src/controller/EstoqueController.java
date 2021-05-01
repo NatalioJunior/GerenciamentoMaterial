@@ -1,12 +1,157 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import assistant.InterList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import model.BO.BaseInterBO;
+import model.BO.ProdutoBO;
+import model.VO.ProdutoVO;
 import view.Telas;
 
-public class EstoqueController {
+public class EstoqueController implements Initializable {
 
-	public void cadastrarP (ActionEvent event) throws Exception{
-			Telas.telaCadastroP();
+	@FXML private TableView<ProdutoVO> tableProdutos;
+	@FXML private TableColumn<ProdutoVO, Integer> idColumn;
+	@FXML private TableColumn<ProdutoVO, String> nomeColumn;
+	@FXML private TableColumn<ProdutoVO, Integer> qntdColumn;
+	@FXML private TableColumn<ProdutoVO, Double> precoColumn;
+	@FXML private Button buttonRem;
+	@FXML private Button buttonEx;
+	@FXML private Region antiButton;
+	@FXML private Region antiButton2;
+	
+	@FXML private AnchorPane overlayExcluir;
+	@FXML private AnchorPane overlayExcluido;
+	
+	@FXML private AnchorPane overlayExpandir;
+	@FXML private TextArea descricaoP;
+	
+	BaseInterBO<ProdutoVO> bo = new ProdutoBO();
+	ObservableList<ProdutoVO> produtos = FXCollections.observableArrayList();
+	
+	private static ProdutoVO lastSelected;
+
+	public static ProdutoVO getLastSelected() {
+		return lastSelected;
+	}
+
+	public static void setLastSelected(ProdutoVO lastSelected) {
+		EstoqueController.lastSelected = lastSelected;
+	}
+
+	@Override
+	public void initialize(URL local, ResourceBundle resources) {
+		try {
+			loadData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+	}
+
+	private void loadData() throws IOException {
+		InterList<ProdutoVO> listaP = bo.listar();
+		ProdutoVO produto = listaP.removeFirst();
+		
+		while (produto != null) {
+			produtos.add(produto);
+			produto = listaP.removeFirst();
+		}
+		
+		idColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, Integer>("id"));
+		nomeColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, String>("nome"));
+		qntdColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, Integer>("quantidade"));
+		precoColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, Double>("preco"));
+		
+		tableProdutos.setItems(produtos);
+	}
+	
+	public void cadastrarP (ActionEvent event) throws Exception{
+		Telas.telaCadastroP();
+	}
+	
+	public void back() throws Exception {
+		Telas.telaMenu();
+	}
+
+	//métodos para overlay de excluir
+	public void excluir (ActionEvent event) throws Exception{
+		if (check() == null) {
+			throw new Exception("Nenhum campo selecionado!");
+		}
+		else {
+			antiButton.setVisible(true);
+			overlayExcluir.setVisible(true);
+		}
+	}
+	
+	public void yesRem(ActionEvent event) throws IOException {
+		bo.deletar(check());
+		tableProdutos.getItems().removeAll(check());
+		overlayExcluir.setVisible(false);
+		overlayExcluido.setVisible(true);
+	}
+
+	public void notRem() {
+		antiButton.setVisible(false);
+		overlayExcluir.setVisible(false);
+	}
+
+	public void closeRem() {
+		antiButton.setVisible(false);
+		overlayExcluido.setVisible(false);
+	}
+	
+	
+	//métodos para overlay de expandir
+	public void expandir(ActionEvent event) throws Exception {
+		if (check() == null) {
+			throw new Exception("Nenhum campo selecionado!");
+		}
+		else {
+			antiButton2.setVisible(true);
+			overlayExpandir.setVisible(true);
+			descricaoP.setText(check().getDescricao());
+		}
+	}
+
+	public void voltarEx() {
+		antiButton2.setVisible(false);
+		overlayExpandir.setVisible(false);
+	}
+	
+	public void editar() {
+		
+	}
+
+	public ProdutoVO check() {
+		ProdutoVO check = tableProdutos.getSelectionModel().getSelectedItem();
+		if (check == null) {
+			buttonRem.setDisable(true);
+			buttonEx.setDisable(true);
+			return check;
+		}
+		else {
+			buttonRem.setDisable(false);
+			buttonEx.setDisable(false);
+			return check;
+		}
+		
+	}
 	
 }

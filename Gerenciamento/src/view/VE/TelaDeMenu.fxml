@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -12,6 +13,9 @@
             <Image url="@TELA%20MENU.png" />
          </image>
       </ImageView>
-      <Button layoutX="492.0" layoutY="246.0" mnemonicParsing="false" onAction="#estoqueProdutos" prefHeight="43.0" prefWidth="296.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="492.0" layoutY="246.0" mnemonicParsing="false" onAction="#estoqueProdutos" prefHeight="43.0" prefWidth="296.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </Pane>

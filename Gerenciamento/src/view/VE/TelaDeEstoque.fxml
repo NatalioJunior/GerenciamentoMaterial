@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EstoqueController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@TELA%20ESTOQUE%20DE%20PRODUTOS.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="827.0" layoutY="211.0" mnemonicParsing="false" onAction="#cadastrarP" prefHeight="41.0" prefWidth="331.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Region fx:id="antiButton" layoutX="822.0" layoutY="206.0" prefHeight="52.0" prefWidth="340.0" style="-fx-background-color: white;" visible="false" />
+      <Region fx:id="antiButton2" layoutX="71.0" layoutY="59.0" prefHeight="41.0" prefWidth="38.0" style="-fx-background-color: white;" visible="false" />
+      <Button layoutX="71.0" layoutY="69.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TableView fx:id="tableProdutos" layoutX="140.0" layoutY="260.0" onMouseClicked="#check" prefHeight="400.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="160.0" resizable="false" text="ID" />
+          <TableColumn fx:id="nomeColumn" prefWidth="400.0" resizable="false" text="Nome" />
+            <TableColumn fx:id="qntdColumn" prefWidth="160.0" resizable="false" text="Quantidade" />
+            <TableColumn fx:id="precoColumn" prefWidth="160.0" resizable="false" text="Preço" />
+            <TableColumn editable="false" prefWidth="60.0" resizable="false" sortable="false">
+               <graphic>
+                  <Button fx:id="buttonRem" disable="true" mnemonicParsing="false" onAction="#excluir" prefHeight="39.0" prefWidth="298.0">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@excluir.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </graphic>
+            </TableColumn>
+            <TableColumn editable="false" prefWidth="60.0" resizable="false" sortable="false">
+               <graphic>
+                  <Button fx:id="buttonEx" disable="true" mnemonicParsing="false" onAction="#expandir">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@expandir.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </graphic>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <AnchorPane fx:id="overlayExcluir" layoutX="340.0" layoutY="200.0" prefHeight="345.0" prefWidth="587.0" visible="false">
+         <children>
+            <ImageView fitHeight="370.0" fitWidth="728.0" preserveRatio="true">
+               <image>
+                  <Image url="@OVERLAY%20CAIXA%20EXCLUIR.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="35.0" layoutY="270.0" mnemonicParsing="false" onAction="#yesRem" prefHeight="78.0" prefWidth="242.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="364.0" layoutY="270.0" mnemonicParsing="false" onAction="#notRem" prefHeight="78.0" prefWidth="242.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="overlayExcluido" layoutX="350.0" layoutY="210.0" prefHeight="345.0" prefWidth="587.0" visible="false">
+         <children>
+            <ImageView fitHeight="370.0" fitWidth="728.0" preserveRatio="true">
+               <image>
+                  <Image url="@OVERLAY%20CAIXA%20EXCLUIDO.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="678.0" layoutY="35.0" mnemonicParsing="false" onAction="#closeRem" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="overlayExpandir" layoutX="95.0" layoutY="13.0" prefHeight="695.0" prefWidth="1090.0" visible="false">
+         <children>
+            <ImageView fitHeight="695.0" fitWidth="1090.0" layoutX="25.0" preserveRatio="true">
+               <image>
+                  <Image url="@OVERLAY%20CAIXA%20DETALHE%20PRODUTO.png" />
+               </image>
+            </ImageView>
+            <TextArea fx:id="descricaoP" editable="false" layoutX="311.0" layoutY="154.0" prefHeight="388.0" prefWidth="471.0" />
+            <Button layoutX="60.0" layoutY="58.0" mnemonicParsing="false" onAction="#voltarEx" prefHeight="41.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="457.0" layoutY="592.0" mnemonicParsing="false" onAction="#editar" prefHeight="62.0" prefWidth="176.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
