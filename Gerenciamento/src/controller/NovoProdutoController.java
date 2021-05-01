@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import model.BO.BaseInterBO;
 import model.BO.ProdutoBO;
 import model.VO.ProdutoVO;
@@ -18,14 +20,16 @@ public class NovoProdutoController {
 	@FXML private TextField valorP;
 	@FXML private TextField idP;
 	@FXML private Label error;
+	@FXML private Region buttonC;
+	@FXML private AnchorPane overlay;
 	
 	ProdutoVO vo = new ProdutoVO();
 	BaseInterBO<ProdutoVO> bo = new ProdutoBO();
 
 	public void confirmar(ActionEvent event) throws Exception{
-		vo.setNome(nomeP.getText());
-		vo.setDescricao(descP.getText());
 		try {
+			vo.setNome(nomeP.getText());
+			vo.setDescricao(descP.getText());
 			vo.setQuantidade(Integer.parseInt(qntdP.getText()));
 			vo.setPreco(Double.parseDouble(valorP.getText()));
 			vo.setId(Integer.parseInt(idP.getText()));
@@ -34,8 +38,18 @@ public class NovoProdutoController {
 			error.setVisible(true);
 			throw new IOException("Há campos inválidos!");
 		}
+		buttonC.setVisible(true);
+		overlay.setVisible(true);
+	}
+	
+	public void yesC(ActionEvent event) throws Exception {
 		bo.cadastrar(vo);
 		Telas.telaEstoque();
+	}
+	
+	public void notC(ActionEvent event) throws Exception {
+		overlay.setVisible(false);
+		buttonC.setVisible(false);
 	}
 	
 	public void voltar(ActionEvent event) throws Exception {

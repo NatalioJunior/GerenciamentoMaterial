@@ -3,10 +3,10 @@ package model.BO;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
+import assistant.InterList;
+import assistant.SimplyList;
 import model.DAO.BaseInterDAO;
 import model.DAO.CompraDAO;
 import model.VO.CompraVO;
@@ -72,7 +72,7 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 	}
 
 	@Override
-	public List<CompraVO> pesquisar(CompraVO compra) throws IOException {
+	public InterList<CompraVO> pesquisar(CompraVO compra) throws IOException {
 		
 		if(compra.getCliente() == null || compra.getProduto() == null || compra.getDataCompra()
 				== null || compra.getQuantidade() < 0 || compra.getValorTotal() < 0)
@@ -82,7 +82,7 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 		else
 		{
 			CompraVO vo = new CompraVO();
-			List<CompraVO> listCompras = new ArrayList<>();
+			InterList<CompraVO> listCompras = new SimplyList<CompraVO>();
 			Calendar cal = Calendar.getInstance();
 			
 			try {
@@ -94,7 +94,7 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 					vo.setDataCompra(cal);
 					vo.setQuantidade(rs.getInt("quantidade"));
 					vo.setValorTotal(rs.getDouble("valor_total"));
-					listCompras.add(vo);
+					listCompras.addLast(vo);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -104,9 +104,9 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 	}
 
 	@Override
-	public List<CompraVO> listar() throws IOException {
+	public InterList<CompraVO> listar() throws IOException {
 		CompraVO compra = new CompraVO();
-		List<CompraVO> listCompras = new ArrayList<>();
+		InterList<CompraVO> listCompras = new SimplyList<CompraVO>();
 		Calendar cal = Calendar.getInstance();
 		
 		try {
@@ -118,7 +118,7 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 				compra.setDataCompra(cal);
 				compra.setQuantidade(rs.getInt("quantidade"));
 				compra.setValorTotal(rs.getDouble("valor_total"));
-				listCompras.add(compra);
+				listCompras.addLast(compra);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

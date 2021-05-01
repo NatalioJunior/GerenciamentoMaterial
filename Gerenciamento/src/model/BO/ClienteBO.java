@@ -3,9 +3,9 @@ package model.BO;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
+import assistant.InterList;
+import assistant.SimplyList;
 import model.DAO.BaseInterDAO;
 import model.DAO.ClienteDAO;
 import model.VO.ClienteVO;
@@ -66,18 +66,18 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 
 	@SuppressWarnings("null")
 	@Override
-	public List<ClienteVO> pesquisar(ClienteVO cliente) throws IOException{
+	public InterList<ClienteVO> pesquisar(ClienteVO cliente) throws IOException{
 		if(cliente.getCadastroPessoa() != null && cliente.getNome() != null)
 		{
 			ClienteVO vo = null;
-			List<ClienteVO> listClientes = new ArrayList<>();
+			InterList<ClienteVO> listClientes = new SimplyList<ClienteVO>();
 			
 			try {
 				ResultSet rs = dao.searchDAO(cliente);
 				while (rs.next()) {
 					vo.setCadastroPessoa(rs.getString("cpf"));
 					vo.setNome(rs.getString("nome"));
-					listClientes.add(vo);
+					listClientes.addLast(vo);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -92,16 +92,16 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 
 	@SuppressWarnings("null")
 	@Override
-	public List<ClienteVO> listar() throws IOException {
+	public InterList<ClienteVO> listar() throws IOException {
 		ClienteVO cliente = null;
-		List<ClienteVO> listClientes = new ArrayList<>();
+		InterList<ClienteVO> listClientes = new SimplyList<ClienteVO>();
 		
 		try {
 			ResultSet rs = dao.listDAO();
 			while (rs.next()) {
 				cliente.setCadastroPessoa(rs.getString("cpf"));
 				cliente.setNome(rs.getString("nome"));
-				listClientes.add(cliente);
+				listClientes.addLast(cliente);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -49,7 +49,7 @@ public class CompraVO {
 		}
 		else
 		{
-			throw new IOException("data da compra inválido!");
+			throw new IOException("Data da compra inválido!");
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class CompraVO {
 	public void setValorTotal(double valorTotal) throws IOException {
 		if(valorTotal < 0)
 		{
-			throw new IOException("Cliente da compra inválido!");
+			throw new IOException("Valor da compra inválido!");
 		}
 		else
 		{

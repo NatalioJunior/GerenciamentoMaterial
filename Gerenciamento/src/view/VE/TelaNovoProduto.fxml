@@ -44,5 +44,17 @@
             <Font name="System Bold" size="15.0" />
          </font></Label>
       <Button layoutX="75.0" layoutY="67.0" mnemonicParsing="false" onAction="#voltar" prefHeight="31.0" prefWidth="29.0" style="-fx-background-color: transparent;" />
+      <Region fx:id="buttonC" layoutX="540.0" layoutY="631.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false" />
+      <AnchorPane fx:id="overlay" layoutX="169.0" layoutY="183.0" prefHeight="450.0" prefWidth="900.0" visible="false">
+         <children>
+            <ImageView fitHeight="450.0" fitWidth="900.0" layoutX="52.0" preserveRatio="true">
+               <image>
+                  <Image url="@OVERLAY%20CAIXA%20CONFIRMAR%20NOVO%20PRODUTO.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="149.0" layoutY="315.0" mnemonicParsing="false" onAction="#yesC" prefHeight="96.0" prefWidth="298.0" style="-fx-background-color: transparent;" />
+            <Button layoutX="552.0" layoutY="315.0" mnemonicParsing="false" onAction="#notC" prefHeight="96.0" prefWidth="298.0" style="-fx-background-color: transparent;" />
+         </children>
+      </AnchorPane>
    </children>
 </Pane>

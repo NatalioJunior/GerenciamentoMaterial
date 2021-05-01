@@ -3,9 +3,9 @@ package model.BO;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
+import assistant.InterList;
+import assistant.SimplyList;
 import model.DAO.BaseInterDAO;
 import model.DAO.ProdutoDAO;
 import model.VO.ProdutoVO;
@@ -72,7 +72,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	}
 
 	@Override
-	public List<ProdutoVO> pesquisar(ProdutoVO produto) throws IOException {
+	public InterList<ProdutoVO> pesquisar(ProdutoVO produto) throws IOException {
 		
 		if(produto.getId() < 0 || produto.getNome() == null || produto.getDescricao() == null
 				|| produto.getQuantidade() < 0 || produto.getPreco() < 0)
@@ -82,7 +82,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		else
 		{
 			ProdutoVO vo = new ProdutoVO();
-			List<ProdutoVO> listProdutos = new ArrayList<>();
+			InterList<ProdutoVO> listProdutos = new SimplyList<ProdutoVO>();
 			
 			try {
 				ResultSet rs = dao.listDAO();
@@ -92,7 +92,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 					vo.setDescricao(rs.getNString("descricao"));
 					vo.setQuantidade(rs.getInt("quantidade"));
 					vo.setPreco(rs.getDouble("preco"));
-					listProdutos.add(vo);
+					listProdutos.addLast(vo);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -102,9 +102,9 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	}
 
 	@Override
-	public List<ProdutoVO> listar() throws IOException {
+	public InterList<ProdutoVO> listar() throws IOException {
 		ProdutoVO produto = new ProdutoVO();
-		List<ProdutoVO> listProdutos = new ArrayList<>();
+		InterList<ProdutoVO> listProdutos = new SimplyList<ProdutoVO>();
 		
 		try {
 			ResultSet rs = dao.listDAO();
@@ -114,7 +114,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 				produto.setDescricao(rs.getNString("descricao"));
 				produto.setQuantidade(rs.getInt("quantidade"));
 				produto.setPreco(rs.getDouble("preco"));
-				listProdutos.add(produto);
+				listProdutos.addLast(produto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
