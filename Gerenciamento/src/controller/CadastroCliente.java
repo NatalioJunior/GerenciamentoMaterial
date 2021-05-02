@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +29,7 @@ public class CadastroCliente implements Initializable {
 	@FXML private TableColumn<ClienteVO, String> nomeC;
 	@FXML private Region antiButton;
 	@FXML private Button buttonRem;
+	@FXML private Label error;
 	
 	@FXML private AnchorPane overlay;
 	
@@ -85,17 +87,24 @@ public class CadastroCliente implements Initializable {
 	}
 	
 	public void yesC() throws IOException {
-		bo.deletar(check());
-		tableClientes.getItems().removeAll(check());
-		antiButton.setVisible(false);
-		overlay.setVisible(false);
-		tableClientes.setDisable(false);
+		try {
+			bo.deletar(check());
+			tableClientes.getItems().removeAll(check());
+			antiButton.setVisible(false);
+			overlay.setVisible(false);
+			tableClientes.setDisable(false);
+		}
+		catch (IOException e) {
+			error.setVisible(true);
+			throw new IOException("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
+		}
 	}
 	
 	public void notC() {
 		antiButton.setVisible(false);
 		overlay.setVisible(false);
 		tableClientes.setDisable(false);
+		error.setVisible(true);
 	}
 	
 	public ClienteVO check() {

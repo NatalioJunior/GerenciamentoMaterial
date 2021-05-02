@@ -268,12 +268,10 @@ public class SimplyList <T> implements InterList<T> {
 		}
 	}
 
-	@Override
 	public boolean isEmpty() {
 		if(head == null) {
 			return true;
 		}
 		return false;
 	}
-	
 }

@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -33,6 +34,7 @@ public class EstoqueController implements Initializable {
 	@FXML private Button buttonEx;
 	@FXML private Region antiButton;
 	@FXML private Region antiButton2;
+	@FXML private Label error;
 	
 	@FXML private AnchorPane overlayExcluir;
 	@FXML private AnchorPane overlayExcluido;
@@ -102,17 +104,24 @@ public class EstoqueController implements Initializable {
 	}
 	
 	public void yesRem(ActionEvent event) throws IOException {
-		bo.deletar(check());
-		tableProdutos.getItems().removeAll(check());
-		overlayExcluir.setVisible(false);
-		overlayExcluido.setVisible(true);
-		tableProdutos.setDisable(false);
+		try {
+			bo.deletar(check());
+			tableProdutos.getItems().removeAll(check());
+			overlayExcluir.setVisible(false);
+			overlayExcluido.setVisible(true);
+			tableProdutos.setDisable(false);
+		}
+		catch (IOException e) {
+			error.setVisible(true);
+			throw new IOException("Erro ao excluir, verifique se há compras cadastradas com este produto!");
+		}
 	}
 
 	public void notRem() {
 		antiButton.setVisible(false);
 		overlayExcluir.setVisible(false);
 		tableProdutos.setDisable(false);
+		error.setVisible(false);
 	}
 
 	public void closeRem() {

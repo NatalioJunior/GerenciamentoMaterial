@@ -124,5 +124,10 @@
             </Button>
          </children>
       </AnchorPane>
+      <Label fx:id="error" layoutX="407.0" layoutY="675.0" text="Erro ao excluir, verifique se há compras cadastradas com este produto!" textFill="RED" visible="false">
+         <effect>
+            <Blend />
+         </effect>
+      </Label>
    </children>
 </Pane>

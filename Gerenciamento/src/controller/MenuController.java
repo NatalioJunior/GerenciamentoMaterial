@@ -32,4 +32,5 @@ public class MenuController {
 	public void clientes() throws Exception{
 		Telas.telaCadastroC();
 	}
+	
 }
