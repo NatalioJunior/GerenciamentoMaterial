@@ -92,5 +92,20 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInt
 		}
 		return rs;
 	}
+	
+	public ResultSet searchID(int id) throws IOException, SQLException {
+		String sql = "select * from produtos where id = ?";
+		ResultSet rs = null;
+		PreparedStatement ptst;
+		
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1, id);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 
 }

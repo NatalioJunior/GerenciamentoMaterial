@@ -25,8 +25,8 @@ public class MenuController {
 		overlay.setVisible(false);
 	}
 	
-	public void compras() {
-		
+	public void compras() throws Exception {
+		Telas.telaCarrinho();
 	}
 	
 	public void clientes() throws Exception{

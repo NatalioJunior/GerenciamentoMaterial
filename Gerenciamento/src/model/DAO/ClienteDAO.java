@@ -83,5 +83,21 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 		return rs;
 		
 	}
+	
+	public ResultSet searchCPF(String cadastro) throws IOException, SQLException {
+		String sql = "select * from clientes where cpf = ?";
+		ResultSet rs = null;
+		PreparedStatement ptst;
+		
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, cadastro);
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+		
+	}
 
 }

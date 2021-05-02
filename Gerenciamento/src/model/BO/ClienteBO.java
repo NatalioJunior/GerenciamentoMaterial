@@ -75,7 +75,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 			try {
 				ResultSet rs = dao.searchDAO(cliente);
 				while (rs.next()) {
-					vo.setCadastroPessoa(rs.getString("cadastroPessoa"));
+					vo.setCadastroPessoa(rs.getString("cpf"));
 					vo.setNome(rs.getString("nome"));
 					listClientes.addLast(vo);
 				}
@@ -83,6 +83,29 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 				e.printStackTrace();
 			}			
 			return listClientes;
+		}
+		else
+		{
+			throw new IOException("Dados inválidos inseridos em cliente BO");
+		}
+	}
+	
+	public ClienteVO pesquisarCPF(String cadastro) throws IOException{
+		ClienteDAO<ClienteVO> daoCPF = new ClienteDAO<ClienteVO>();
+		if(cadastro != null)
+		{
+			ClienteVO vo = new ClienteVO();
+			
+			try {
+				ResultSet rs = daoCPF.searchCPF(cadastro);
+				while (rs.next()) {
+					vo.setCadastroPessoa(rs.getString("cpf"));
+					vo.setNome(rs.getString("nome"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+			return vo;
 		}
 		else
 		{
