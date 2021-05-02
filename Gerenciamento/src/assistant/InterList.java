@@ -14,4 +14,6 @@ public interface InterList <T> {
 	T peekFirst();
 	T peekLast();
 	T search(int id);
+	
+	boolean isEmpty();
 }

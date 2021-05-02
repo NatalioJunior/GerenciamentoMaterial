@@ -31,7 +31,7 @@ public class CompraDAO<VO extends CompraVO> extends BaseDAO implements BaseInter
 
 	@Override
 	public void removeDAO(VO vo) throws IOException, SQLException {
-		String sql = "delete from compras where id_cliente = ?, id_produto = ?";
+		String sql = "delete from compras where id_cliente = ? and id_produto = ?";
 		PreparedStatement ptst;
 		
 		try {
@@ -47,7 +47,7 @@ public class CompraDAO<VO extends CompraVO> extends BaseDAO implements BaseInter
 
 	@Override
 	public void updateDAO(VO vo) throws IOException, SQLException {
-		String sql = "update compras set data_compra = ?, quantidade = ?, valor_total = ? where id_cliente = ?, id_produto = ?";
+		String sql = "update compras set data_compra = ?, quantidade = ?, valor_total = ? where id_cliente = ? and id_produto = ?";
 		PreparedStatement ptst;
 		
 		try {
@@ -82,7 +82,7 @@ public class CompraDAO<VO extends CompraVO> extends BaseDAO implements BaseInter
 
 	@Override
 	public ResultSet searchDAO(VO vo) throws IOException, SQLException {
-		String sql = "select * from compras where id_cliente = ?, id_produto = ?";
+		String sql = "select * from compras where id_cliente = ? and id_produto = ?";
 		ResultSet rs = null;
 		PreparedStatement ptst;
 		

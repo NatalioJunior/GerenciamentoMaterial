@@ -44,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="225.0" layoutY="168.0" mnemonicParsing="false" onAction="#compras" prefHeight="64.0" prefWidth="282.0" style="-fx-background-color: transparent;">
+            <Button layoutX="225.0" layoutY="168.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="282.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

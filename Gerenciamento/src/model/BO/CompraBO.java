@@ -81,13 +81,13 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 		}
 		else
 		{
-			CompraVO vo = new CompraVO();
 			InterList<CompraVO> listCompras = new SimplyList<CompraVO>();
 			Calendar cal = Calendar.getInstance();
 			
 			try {
 				ResultSet rs = dao.searchDAO(compra);
 				while (rs.next()) {
+					CompraVO vo = new CompraVO();
 					vo.setCliente(compra.getCliente());
 					vo.setProduto(compra.getProduto());
 					cal.setTime(rs.getDate("data_compra"));
@@ -97,21 +97,21 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 					listCompras.addLast(vo);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
-			}			
+				return null;
+			}
 			return listCompras;
 		}
 	}
 
 	@Override
 	public InterList<CompraVO> listar() throws IOException {
-		CompraVO compra = new CompraVO();
 		InterList<CompraVO> listCompras = new SimplyList<CompraVO>();
 		Calendar cal = Calendar.getInstance();
 		
 		try {
 			ResultSet rs = dao.listDAO();
 			while (rs.next()) {
+				CompraVO compra = new CompraVO();
 				compra.setCliente(compra.getCliente());
 				compra.setProduto(compra.getProduto());
 				cal.setTime(rs.getDate("data_compra"));

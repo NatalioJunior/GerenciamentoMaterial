@@ -271,4 +271,12 @@ public class DoubleList <T> implements InterList <T>{
 				return ptr.object;
 			}
 		}
+		
+		@Override
+		public boolean isEmpty() {
+			if(head == null) {
+				return true;
+			}
+			return false;
+		}
 }

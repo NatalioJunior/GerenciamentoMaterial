@@ -35,6 +35,10 @@ public class SimplyList <T> implements InterList<T> {
 		this.size = 0;
 	}
 	
+	public int getSize() {
+		return size;	
+	}
+	
 	public void show() {
 		Element ptr = head;
 		
@@ -262,6 +266,14 @@ public class SimplyList <T> implements InterList<T> {
 		else {
 			return ptr.object;
 		}
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if(head == null) {
+			return true;
+		}
+		return false;
 	}
 	
 }

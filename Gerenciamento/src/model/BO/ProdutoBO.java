@@ -81,12 +81,12 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 		}
 		else
 		{
-			ProdutoVO vo = new ProdutoVO();
 			InterList<ProdutoVO> listProdutos = new SimplyList<ProdutoVO>();
 			
 			try {
 				ResultSet rs = dao.searchDAO(produto);
 				while (rs.next()) {
+					ProdutoVO vo = new ProdutoVO();
 					vo.setId(rs.getInt("id"));
 					vo.setNome(rs.getString("nome"));
 					vo.setDescricao(rs.getNString("descricao"));
@@ -109,12 +109,12 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 			throw new IOException("Dados inválidos!");
 		}
 		else
-		{
-			ProdutoVO vo = new ProdutoVO();			
+		{		
+			ProdutoVO vo = new ProdutoVO();	
 			try {
 				ResultSet rs = daoID.searchID(id);
 				while (rs.next()) {
-					vo.setId(rs.getInt("id"));
+					vo.setId(rs.getInt("id"));		
 					vo.setNome(rs.getString("nome"));
 					vo.setDescricao(rs.getString("descricao"));
 					vo.setQuantidade(rs.getInt("quantidade"));
@@ -129,23 +129,23 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 
 	@Override
 	public InterList<ProdutoVO> listar() throws IOException {
-		ProdutoVO produto = new ProdutoVO();
 		InterList<ProdutoVO> listProdutos = new SimplyList<ProdutoVO>();
 		
 		try {
 			ResultSet rs = dao.listDAO();
 			while (rs.next()) {
+				ProdutoVO produto = new ProdutoVO();
 				produto.setId(rs.getInt("id"));
 				produto.setNome(rs.getString("nome"));
 				produto.setDescricao(rs.getString("descricao"));
 				produto.setQuantidade(rs.getInt("quantidade"));
 				produto.setPreco(rs.getDouble("preco"));
 				listProdutos.addLast(produto);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return listProdutos;
 	}
 

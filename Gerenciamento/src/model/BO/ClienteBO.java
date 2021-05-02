@@ -64,17 +64,16 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 		
 	}
 
-	@SuppressWarnings("null")
 	@Override
 	public InterList<ClienteVO> pesquisar(ClienteVO cliente) throws IOException{
 		if(cliente.getCadastroPessoa() != null && cliente.getNome() != null)
 		{
-			ClienteVO vo = null;
 			InterList<ClienteVO> listClientes = new SimplyList<ClienteVO>();
 			
 			try {
 				ResultSet rs = dao.searchDAO(cliente);
 				while (rs.next()) {
+					ClienteVO vo = new ClienteVO();
 					vo.setCadastroPessoa(rs.getString("cpf"));
 					vo.setNome(rs.getString("nome"));
 					listClientes.addLast(vo);
@@ -115,12 +114,12 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 
 	@Override
 	public InterList<ClienteVO> listar() throws IOException {
-		ClienteVO cliente = new ClienteVO();
 		InterList<ClienteVO> listClientes = new SimplyList<ClienteVO>();
 		
 		try {
 			ResultSet rs = dao.listDAO();
 			while (rs.next()) {
+				ClienteVO cliente = new ClienteVO();
 				cliente.setCadastroPessoa(rs.getString("cpf"));
 				cliente.setNome(rs.getString("nome"));
 				listClientes.addLast(cliente);

@@ -78,7 +78,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInt
 
 	@Override
 	public ResultSet searchDAO(VO vo) throws IOException, SQLException {
-		String sql = "select * from produtos where id = ?, nome = ?";
+		String sql = "select * from produtos where id = ? and nome = ?";
 		ResultSet rs = null;
 		PreparedStatement ptst;
 		
