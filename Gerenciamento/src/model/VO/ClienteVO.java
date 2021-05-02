@@ -2,7 +2,7 @@ package model.VO;
 
 import java.io.IOException;
 
-public abstract class ClienteVO {
+public class ClienteVO {
 	protected String cadastroPessoa;
 	protected String nome;
 	

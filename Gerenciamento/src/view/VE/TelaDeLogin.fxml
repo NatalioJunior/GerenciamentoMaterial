@@ -27,5 +27,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Label fx:id="error" layoutX="529.0" layoutY="498.0" text="USUÁRIO OU SENHA INVÁLIDOS!" textFill="RED" visible="false">
+         <effect>
+            <Blend />
+         </effect>
+      </Label>
    </children>
 </Pane>

@@ -97,6 +97,7 @@ public class EstoqueController implements Initializable {
 		else {
 			antiButton.setVisible(true);
 			overlayExcluir.setVisible(true);
+			tableProdutos.setDisable(true);
 		}
 	}
 	
@@ -105,16 +106,19 @@ public class EstoqueController implements Initializable {
 		tableProdutos.getItems().removeAll(check());
 		overlayExcluir.setVisible(false);
 		overlayExcluido.setVisible(true);
+		tableProdutos.setDisable(false);
 	}
 
 	public void notRem() {
 		antiButton.setVisible(false);
 		overlayExcluir.setVisible(false);
+		tableProdutos.setDisable(false);
 	}
 
 	public void closeRem() {
 		antiButton.setVisible(false);
 		overlayExcluido.setVisible(false);
+		tableProdutos.setDisable(false);
 	}
 	
 	
@@ -127,12 +131,14 @@ public class EstoqueController implements Initializable {
 			antiButton2.setVisible(true);
 			overlayExpandir.setVisible(true);
 			descricaoP.setText(check().getDescricao());
+			tableProdutos.setDisable(true);
 		}
 	}
 
 	public void voltarEx() {
 		antiButton2.setVisible(false);
 		overlayExpandir.setVisible(false);
+		tableProdutos.setDisable(false);
 	}
 	
 	public void editar() {
