@@ -33,7 +33,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 			ptst.setString(1, vo.getCadastroPessoa());
 			ptst.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+				throw new SQLException("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
 		}
 		
 	}

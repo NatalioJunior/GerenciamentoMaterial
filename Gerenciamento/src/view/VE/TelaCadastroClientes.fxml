@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -20,7 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TableView fx:id="tableClientes" layoutX="356.0" layoutY="267.0" onMouseClicked="#check" prefHeight="420.0" prefWidth="560.0">
+      <TableView fx:id="tableClientes" layoutX="356.0" layoutY="267.0" onMouseClicked="#check" prefHeight="420.0" prefWidth="620.0">
         <columns>
           <TableColumn fx:id="Cpf_Cnpj" editable="false" prefWidth="250.0" resizable="false" text="CPF/CNPJ" />
           <TableColumn fx:id="nomeC" editable="false" prefWidth="250.0" resizable="false" text="NOME" />
@@ -31,6 +32,25 @@
                         <ImageView>
                            <image>
                               <Image url="@excluir.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </graphic>
+            </TableColumn>
+            <TableColumn editable="false" prefWidth="60.0" resizable="false" sortable="false">
+               <graphic>
+                  <Button fx:id="buttonEx" disable="true" mnemonicParsing="false" onAction="#expandir">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@expandir.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -58,10 +78,39 @@
             </Button>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="overlay2" layoutX="306.0" layoutY="317.0" prefHeight="341.0" prefWidth="680.0" visible="false">
+         <children>
+            <ImageView fitHeight="401.0" fitWidth="680.0" preserveRatio="true">
+               <image>
+                  <Image url="@OVERLAY%20CAIXA%20CONFIRMADO%20EDICAO.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="nomeC2" layoutX="215.0" layoutY="153.0" prefHeight="70.0" prefWidth="445.0" style="-fx-background-color: transparent;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Button layoutX="225.0" layoutY="255.0" mnemonicParsing="false" onAction="#yesE" prefHeight="70.0" prefWidth="232.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="620.0" layoutY="24.0" mnemonicParsing="false" onAction="#notC" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
       <Label fx:id="error" layoutX="417.0" layoutY="685.0" text="Erro ao excluir, verifique se há compras cadastradas com este cliente!" textFill="RED" visible="false">
          <effect>
             <Blend />
          </effect>
       </Label>
+      <TextField fx:id="procurar" layoutX="306.0" layoutY="159.0" prefHeight="44.0" prefWidth="807.0" style="-fx-background-color: transparent;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>

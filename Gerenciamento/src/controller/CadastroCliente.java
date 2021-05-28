@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -29,9 +30,12 @@ public class CadastroCliente implements Initializable {
 	@FXML private TableColumn<ClienteVO, String> nomeC;
 	@FXML private Region antiButton;
 	@FXML private Button buttonRem;
+	@FXML private Button buttonEx;
 	@FXML private Label error;
 	
 	@FXML private AnchorPane overlay;
+	@FXML private AnchorPane overlay2;
+	@FXML private TextField nomeC2;
 	
 	BaseInterBO<ClienteVO> bo = new ClienteBO();
 	ObservableList<ClienteVO> clientes = FXCollections.observableArrayList(); 
@@ -86,13 +90,38 @@ public class CadastroCliente implements Initializable {
 		}
 	}
 	
+	public void expandir(ActionEvent event) throws Exception {
+		if (check() == null) {
+			throw new Exception("Nenhum campo selecionado!");
+		}
+		else {
+			antiButton.setVisible(true);
+			overlay2.setVisible(true);
+			tableClientes.setDisable(true);
+		}
+	}
+	
 	public void yesC() throws IOException {
 		try {
 			bo.deletar(check());
 			tableClientes.getItems().removeAll(check());
 			antiButton.setVisible(false);
 			overlay.setVisible(false);
-			tableClientes.setDisable(false);
+			tableClientes.setDisable(false);			
+		}
+		catch (IOException e) {
+			error.setVisible(true);
+			throw new IOException("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
+		}
+	}
+	
+	public void yesE() throws IOException {
+		try {
+			bo.deletar(check());
+			tableClientes.getItems().removeAll(check());
+			antiButton.setVisible(false);
+			overlay.setVisible(false);
+			tableClientes.setDisable(false);			
 		}
 		catch (IOException e) {
 			error.setVisible(true);
@@ -103,18 +132,20 @@ public class CadastroCliente implements Initializable {
 	public void notC() {
 		antiButton.setVisible(false);
 		overlay.setVisible(false);
+		overlay2.setVisible(false);
 		tableClientes.setDisable(false);
-		error.setVisible(true);
 	}
 	
 	public ClienteVO check() {
 		ClienteVO check = tableClientes.getSelectionModel().getSelectedItem();
 		if (check == null) {
 			buttonRem.setDisable(true);
+			buttonEx.setDisable(true);
 			return check;
 		}
 		else {
 			buttonRem.setDisable(false);
+			buttonEx.setDisable(false);
 			return check;
 		}
 		
