@@ -15,7 +15,7 @@ public class ProdutoVO {
 		return id;
 	}
 	public void setId(int id) throws IOException {
-		if(id < 0)
+		if(id < -1)
 		{
 			throw new IOException("Id do produto inválido");
 		}

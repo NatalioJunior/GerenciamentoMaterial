@@ -107,10 +107,20 @@
             <Blend />
          </effect>
       </Label>
-      <TextField fx:id="procurar" layoutX="306.0" layoutY="159.0" prefHeight="44.0" prefWidth="807.0" style="-fx-background-color: transparent;">
+      <TextField fx:id="procurar" layoutX="296.0" layoutY="159.0" prefHeight="44.0" prefWidth="807.0" style="-fx-background-color: transparent;">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button layoutX="1116.0" layoutY="166.0" mnemonicParsing="false" onAction="#buscar" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="808.0" layoutY="210.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="44.0" prefWidth="347.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

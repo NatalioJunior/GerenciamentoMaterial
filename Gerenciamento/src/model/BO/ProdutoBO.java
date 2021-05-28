@@ -74,8 +74,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 	@Override
 	public InterList<ProdutoVO> pesquisar(ProdutoVO produto) throws IOException {
 		
-		if(produto.getId() < 0 || produto.getNome() == null || produto.getDescricao() == null
-				|| produto.getQuantidade() < 0 || produto.getPreco() < 0)
+		if(produto.getId() < -1 || produto.getNome() == null)
 		{
 			throw new IOException("Dados inválidos inseridos em produtoBO");
 		}
@@ -89,7 +88,7 @@ public class ProdutoBO implements BaseInterBO<ProdutoVO> {
 					ProdutoVO vo = new ProdutoVO();
 					vo.setId(rs.getInt("id"));
 					vo.setNome(rs.getString("nome"));
-					vo.setDescricao(rs.getNString("descricao"));
+					vo.setDescricao(rs.getString("descricao"));
 					vo.setQuantidade(rs.getInt("quantidade"));
 					vo.setPreco(rs.getDouble("preco"));
 					listProdutos.addLast(vo);

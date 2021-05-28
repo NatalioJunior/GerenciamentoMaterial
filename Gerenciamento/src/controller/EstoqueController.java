@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -35,6 +36,7 @@ public class EstoqueController implements Initializable {
 	@FXML private Region antiButton;
 	@FXML private Region antiButton2;
 	@FXML private Label error;
+	@FXML private TextField procurar;
 	
 	@FXML private AnchorPane overlayExcluir;
 	@FXML private AnchorPane overlayExcluido;
@@ -43,7 +45,7 @@ public class EstoqueController implements Initializable {
 	@FXML private TextArea descricaoP;
 	
 	BaseInterBO<ProdutoVO> bo = new ProdutoBO();
-	ObservableList<ProdutoVO> produtos = FXCollections.observableArrayList();
+	ProdutoVO vo = new ProdutoVO();
 	
 	private static ProdutoVO lastSelected;
 
@@ -67,6 +69,7 @@ public class EstoqueController implements Initializable {
 	}
 
 	private void loadData() throws IOException {
+		ObservableList<ProdutoVO> produtos = FXCollections.observableArrayList();
 		InterList<ProdutoVO> listaP = bo.listar();
 		ProdutoVO produto = listaP.removeFirst();
 		
@@ -103,6 +106,35 @@ public class EstoqueController implements Initializable {
 		}
 	}
 	
+	public void buscar() throws IOException {
+		ObservableList<ProdutoVO> produtos = FXCollections.observableArrayList();
+		if (!procurar.getText().equals("")) {
+			vo.setId(-1);
+			if (procurar.getText().matches("^[0-9]*$")) {
+				vo.setId(Integer.parseInt(procurar.getText()));
+			}
+			vo.setNome(procurar.getText());
+			InterList<ProdutoVO> listaC = bo.pesquisar(vo);
+			ProdutoVO produto = listaC.removeFirst();
+			
+			while(produto != null) {
+				produtos.add(produto);
+				produto = listaC.removeFirst();
+			}
+			
+			idColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, Integer>("id"));
+			nomeColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, String>("nome"));
+			qntdColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, Integer>("quantidade"));
+			precoColumn.setCellValueFactory(new PropertyValueFactory<ProdutoVO, Double>("preco"));
+			
+			tableProdutos.setItems(produtos);
+		}
+		else {
+			error.setText("Erro procurar: Campo em branco!");
+			error.setVisible(true);
+		}
+	}
+	
 	public void yesRem(ActionEvent event) throws IOException {
 		try {
 			bo.deletar(check());
@@ -112,6 +144,7 @@ public class EstoqueController implements Initializable {
 			tableProdutos.setDisable(false);
 		}
 		catch (IOException e) {
+			error.setText("Erro ao excluir, verifique se há compras cadastradas com este produto!");
 			error.setVisible(true);
 			throw new IOException("Erro ao excluir, verifique se há compras cadastradas com este produto!");
 		}
@@ -128,6 +161,10 @@ public class EstoqueController implements Initializable {
 		antiButton.setVisible(false);
 		overlayExcluido.setVisible(false);
 		tableProdutos.setDisable(false);
+	}
+	
+	public void cadastrar() throws Exception {
+		Telas.telaCadastroP();
 	}
 	
 	

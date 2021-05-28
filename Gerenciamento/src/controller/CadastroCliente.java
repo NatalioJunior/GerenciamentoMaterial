@@ -32,13 +32,14 @@ public class CadastroCliente implements Initializable {
 	@FXML private Button buttonRem;
 	@FXML private Button buttonEx;
 	@FXML private Label error;
+	@FXML private TextField procurar;
 	
 	@FXML private AnchorPane overlay;
 	@FXML private AnchorPane overlay2;
 	@FXML private TextField nomeC2;
 	
 	BaseInterBO<ClienteVO> bo = new ClienteBO();
-	ObservableList<ClienteVO> clientes = FXCollections.observableArrayList(); 
+	private ClienteVO vo = new ClienteVO();
 	private static ClienteVO lastSelected;
 
 	public static ClienteVO getLastSelected() {
@@ -61,6 +62,7 @@ public class CadastroCliente implements Initializable {
 	}
 
 	private void loadData() throws IOException {
+		ObservableList<ClienteVO> clientes = FXCollections.observableArrayList(); 
 		InterList<ClienteVO> listaC = bo.listar();
 		ClienteVO cliente = listaC.removeFirst();
 		
@@ -73,6 +75,31 @@ public class CadastroCliente implements Initializable {
 		nomeC.setCellValueFactory(new PropertyValueFactory<ClienteVO, String>("nome"));
 		
 		tableClientes.setItems(clientes);
+	}
+	
+	public void buscar() throws IOException {
+		ObservableList<ClienteVO> clientes = FXCollections.observableArrayList(); 
+		if (!procurar.getText().equals("")) {
+			vo.setCadastroPessoa(procurar.getText());
+			vo.setNome(procurar.getText());
+			
+			InterList<ClienteVO> listaC = bo.pesquisar(vo);
+			ClienteVO cliente = listaC.removeFirst();
+			
+			while(cliente != null) {
+				clientes.add(cliente);
+				cliente = listaC.removeFirst();
+			}
+			
+			Cpf_Cnpj.setCellValueFactory(new PropertyValueFactory<ClienteVO, String>("cadastroPessoa"));
+			nomeC.setCellValueFactory(new PropertyValueFactory<ClienteVO, String>("nome"));
+			
+			tableClientes.setItems(clientes);
+		}
+		else {
+			error.setText("Erro ao procurar: Campo vazio!");
+			error.setVisible(true);
+		}
 	}
 	
 	public void back() throws Exception {
@@ -110,6 +137,7 @@ public class CadastroCliente implements Initializable {
 			tableClientes.setDisable(false);			
 		}
 		catch (IOException e) {
+			error.setText("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
 			error.setVisible(true);
 			throw new IOException("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
 		}
@@ -124,6 +152,7 @@ public class CadastroCliente implements Initializable {
 			tableClientes.setDisable(false);			
 		}
 		catch (IOException e) {
+			error.setText("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
 			error.setVisible(true);
 			throw new IOException("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
 		}
@@ -134,6 +163,10 @@ public class CadastroCliente implements Initializable {
 		overlay.setVisible(false);
 		overlay2.setVisible(false);
 		tableClientes.setDisable(false);
+	}
+	
+	public void cadastrar() throws Exception {
+		Telas.telaClientes();
 	}
 	
 	public ClienteVO check() {

@@ -68,7 +68,7 @@ public class ClienteDAO<VO extends ClienteVO> extends BaseDAO implements BaseInt
 	}
 	
 	public ResultSet searchDAO(VO vo) throws IOException, SQLException {
-		String sql = "select * from clientes where cpf = ? and nome = ?";
+		String sql = "select * from clientes where cpf = ? or nome = ?";
 		ResultSet rs = null;
 		PreparedStatement ptst;
 		
