@@ -95,7 +95,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="620.0" layoutY="24.0" mnemonicParsing="false" onAction="#notC" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+            <Button layoutX="626.0" layoutY="24.0" mnemonicParsing="false" onAction="#notC" prefHeight="44.0" prefWidth="32.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -130,7 +130,7 @@
             <Blend />
          </effect>
       </Label>
-      <TextField fx:id="procurar" layoutX="295.0" layoutY="157.0" prefHeight="44.0" prefWidth="806.0" promptText="POR ID OU NOME" style="-fx-background-color: transparent;">
+      <TextField fx:id="procurar" layoutX="295.0" layoutY="157.0" prefHeight="44.0" prefWidth="806.0" promptText="POR ID OU NOME (Considere maiusculas e minuscuclas)" style="-fx-background-color: transparent;">
          <font>
             <Font size="20.0" />
          </font>

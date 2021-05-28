@@ -1,6 +1,5 @@
 package view;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -77,6 +76,14 @@ public class Telas extends Application {
 	
 	public static void telaCarrinho() throws Exception{
 		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCarrinhoCompra.fxml"));
+
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+		primaryStage.show();
+	}
+	
+	public static void editarProduto() throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaEditarProduto.fxml"));
 
 		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);

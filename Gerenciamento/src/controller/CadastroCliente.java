@@ -145,11 +145,30 @@ public class CadastroCliente implements Initializable {
 	
 	public void yesE() throws IOException {
 		try {
-			bo.deletar(check());
-			tableClientes.getItems().removeAll(check());
+			vo.setCadastroPessoa(check().getCadastroPessoa());
+			if (!nomeC2.getText().equals("")) {
+				vo.setNome(nomeC2.getText());
+			}
+			bo.editar(vo);
+			
+			ObservableList<ClienteVO> clientes = FXCollections.observableArrayList(); 
+			InterList<ClienteVO> listaC = bo.listar();
+			ClienteVO cliente = listaC.removeFirst();
+			
+			while(cliente != null) {
+				clientes.add(cliente);
+				cliente = listaC.removeFirst();
+			}
+			
+			Cpf_Cnpj.setCellValueFactory(new PropertyValueFactory<ClienteVO, String>("cadastroPessoa"));
+			nomeC.setCellValueFactory(new PropertyValueFactory<ClienteVO, String>("nome"));
+			
+			
 			antiButton.setVisible(false);
-			overlay.setVisible(false);
-			tableClientes.setDisable(false);			
+			overlay2.setVisible(false);
+			tableClientes.setDisable(false);	
+			
+			tableClientes.setItems(clientes);
 		}
 		catch (IOException e) {
 			error.setText("Erro ao excluir, verifique se há compras cadastradas com este cliente!");
