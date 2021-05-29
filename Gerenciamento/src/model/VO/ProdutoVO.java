@@ -76,6 +76,5 @@ public class ProdutoVO {
 			this.preco = preco;
 		}
 	}
-	
-	
+		
 }

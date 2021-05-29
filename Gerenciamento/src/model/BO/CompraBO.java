@@ -9,7 +9,9 @@ import assistant.InterList;
 import assistant.SimplyList;
 import model.DAO.BaseInterDAO;
 import model.DAO.CompraDAO;
+import model.VO.ClienteVO;
 import model.VO.CompraVO;
+import model.VO.ProdutoVO;
 
 public class CompraBO implements BaseInterBO<CompraVO>{
 	
@@ -106,14 +108,18 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 	@Override
 	public InterList<CompraVO> listar() throws IOException {
 		InterList<CompraVO> listCompras = new SimplyList<CompraVO>();
-		Calendar cal = Calendar.getInstance();
+		ClienteBO boCliente = new ClienteBO();
+		ProdutoBO boProduto = new ProdutoBO();
 		
 		try {
 			ResultSet rs = dao.listDAO();
 			while (rs.next()) {
+				Calendar cal = Calendar.getInstance();
 				CompraVO compra = new CompraVO();
-				compra.setCliente(compra.getCliente());
-				compra.setProduto(compra.getProduto());
+				ClienteVO voCliente = boCliente.pesquisarCPF(rs.getString("id_cliente"));
+				compra.setCliente(voCliente);
+				ProdutoVO voProduto = boProduto.pesquisarID(rs.getInt("id_produto"));
+				compra.setProduto(voProduto);
 				cal.setTime(rs.getDate("data_compra"));
 				compra.setDataCompra(cal);
 				compra.setQuantidade(rs.getInt("quantidade"));

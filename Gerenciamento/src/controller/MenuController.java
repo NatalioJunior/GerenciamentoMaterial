@@ -29,6 +29,10 @@ public class MenuController {
 		Telas.telaCarrinho();
 	}
 	
+	public void listaCompras() throws Exception {
+		Telas.telaCompras();
+	}
+	
 	public void clientes() throws Exception{
 		Telas.telaCadastroC();
 	}

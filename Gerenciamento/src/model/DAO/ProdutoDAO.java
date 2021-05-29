@@ -37,7 +37,7 @@ public class ProdutoDAO<VO extends ProdutoVO> extends BaseDAO implements BaseInt
 			ptst.setInt(1, vo.getId());
 			ptst.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SQLException("Erro ao excluir, verifique se há compras cadastradas com este produto!");
 		}
 		
 	}

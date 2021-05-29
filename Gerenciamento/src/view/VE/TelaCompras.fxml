@@ -8,38 +8,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCompras">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaCompras">
    <children>
       <ImageView fitHeight="787.0" fitWidth="1280.0" preserveRatio="true">
          <image>
             <Image url="@COMPRAS.png" />
          </image>
       </ImageView>
-      <Label fx:id="error" layoutX="538.0" layoutY="610.0" text="ALGUM DADO ESTA INVÁLIDO!" textFill="RED" visible="false">
-         <effect>
-            <Blend />
-         </effect>
-      </Label>
-      <TextField editable="false" layoutX="195.0" layoutY="560.0" />
-      <TextField editable="false" layoutX="521.0" layoutY="560.0" />
-      <TextField editable="false" layoutX="1001.0" layoutY="545.0" prefHeight="31.0" prefWidth="120.0" />
-      <Button layoutX="353.0" layoutY="631.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="247.0" style="-fx-background-color: transparent;">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="679.0" layoutY="640.0" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="247.0" style="-fx-background-color: transparent;">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <TableView layoutX="123.0" layoutY="154.0" onMouseClicked="#check" prefHeight="384.0" prefWidth="1000.0">
+      <TextField fx:id="dataCompra" editable="false" layoutX="195.0" layoutY="560.0" />
+      <TextField fx:id="cpfC" editable="false" layoutX="521.0" layoutY="560.0" />
+      <TextField fx:id="total" editable="false" layoutX="1001.0" layoutY="545.0" prefHeight="31.0" prefWidth="120.0" />
+      <TableView fx:id="tabelaCompras" layoutX="123.0" layoutY="154.0" onMouseClicked="#check" prefHeight="384.0" prefWidth="1000.0">
          <columns>
-            <TableColumn editable="false" prefWidth="60.0" resizable="false" text="ID" />
-            <TableColumn editable="false" prefWidth="220.0" resizable="false" text="NOME DO PRODUTO" />
-            <TableColumn prefWidth="220.0" text="NOME DO CLIENTE" />
-            <TableColumn prefWidth="220.0" text="QUANTIDADE" />
-            <TableColumn prefWidth="220.0" text="VALOR UNIT" />
+            <TableColumn fx:id="idP" editable="false" prefWidth="60.0" resizable="false" text="ID" />
+            <TableColumn fx:id="nomeP" editable="false" prefWidth="176.0" resizable="false" text="NOME DO PRODUTO" />
+            <TableColumn fx:id="nomeC" prefWidth="176.0" text="NOME DO CLIENTE" />
+            <TableColumn fx:id="qntdP" prefWidth="176.0" text="QUANTIDADE" />
+            <TableColumn fx:id="valorCompra" prefWidth="176.0" text="VALOR UNIT" />
+            <TableColumn fx:id="precoP" prefWidth="176.0" text="PREÇO ATUAL" />
             <TableColumn editable="false" prefWidth="60.0" resizable="false" sortable="false">
                <graphic>
                   <Button fx:id="buttonRem" disable="true" mnemonicParsing="false" onAction="#excluir">
@@ -55,8 +41,6 @@
             </TableColumn>
          </columns>
       </TableView>
-      <Region layoutX="679.0" layoutY="635.0" prefHeight="48.0" prefWidth="247.0" />
-      <Region layoutX="353.0" layoutY="631.0" prefHeight="54.0" prefWidth="247.0" />
       <AnchorPane fx:id="overlay" layoutX="306.0" layoutY="317.0" prefHeight="341.0" prefWidth="680.0" visible="false">
          <children>
             <ImageView fitHeight="401.0" fitWidth="680.0" preserveRatio="true">
@@ -76,5 +60,10 @@
             </Button>
          </children>
       </AnchorPane>
+      <Button layoutX="85.0" layoutY="36.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="38.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

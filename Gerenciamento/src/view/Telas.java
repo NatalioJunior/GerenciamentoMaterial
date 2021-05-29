@@ -89,6 +89,15 @@ public class Telas extends Application {
 		primaryStage.setScene(cena);
 		primaryStage.show();
 	}
+	
+	public static void telaCompras() throws Exception {
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCompras.fxml"));
+
+		Scene cena = new Scene(root);
+		primaryStage.setScene(cena);
+		primaryStage.show();
+		
+	}
 
 	public static void main(String[] args) {
 		launch();
